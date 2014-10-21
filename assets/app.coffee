@@ -14,17 +14,16 @@ colors = [
 app = {}
 
 randomState = ()->
-  [0..size*size].map((el)->
+  [0...size*size].map((el)->
     return Math.floor(Math.random() * colors.length)
   )
 
-app.Board = require('board.coffee')
+app.Board = require('./board.coffee')
 
 app.controller = ()->
-  @board = app.Board(randomState)
-  func = (i, j)->
+  @board = app.Board(randomState())
+  @choose= (i, j)=>
     @board.flood(i, j)
-  @choose = func.bind(@)
   return @
 
 app.view = (ctrl)-> [
@@ -33,7 +32,7 @@ app.view = (ctrl)-> [
       m 'tbody', [0...size].map((i)->
         m 'tr', [0...size].map((j)->
           color = colors[ctrl.board.state[i * size + j]]
-          m "td.#{color}", { onclick: ()-> ctrl.choose(i, j)}
+          m "td.#{color}", { onclick: ()-> ctrl.choose(color)}
         )
       )
     ]
