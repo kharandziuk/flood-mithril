@@ -33,3 +33,20 @@ describe 'Board', ->
         0, 0, 0, 0
     ])
     expect(board.isWin).toBeFalsy()
+
+  it 'border case', ->
+    board = Board([
+      2, 1, 1, 2
+      2, 2, 1, 1
+      1, 1, 1, 1
+      1, 1, 1, 1
+    ])
+    board.flood(3)
+    expect(board.state).toEqual([
+      3, 1, 1, 2
+      3, 3, 1, 1
+      1, 1, 1, 1
+      1, 1, 1, 1
+    ])
+
+    

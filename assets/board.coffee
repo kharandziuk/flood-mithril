@@ -10,7 +10,14 @@ Board = (state)->
   # colors
   @state = state
 
-  getNeighbors = (num)-> [num - 1, num + 1, num - size, num + size]
+  getNeighbors = (num)->
+    result = [
+      num - size,
+      num + size
+    ]
+    result.push(num + 1) if (num + 1) % size isnt 0
+    result.push(num - 1) if (num) % size isnt 0
+    return result
 
   floodCell = (num, newColor, oldColor, checked)=>
     @state[num] = newColor
