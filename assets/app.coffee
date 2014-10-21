@@ -22,8 +22,8 @@ app.Board = require('./board.coffee')
 
 app.controller = ()->
   @board = app.Board(randomState())
-  @choose= (i, j)=>
-    @board.flood(i, j)
+  @choose= (color)=>
+    @board.flood(color)
   return @
 
 app.view = (ctrl)-> [
@@ -31,8 +31,12 @@ app.view = (ctrl)-> [
     m 'table', [
       m 'tbody', [0...size].map((i)->
         m 'tr', [0...size].map((j)->
-          color = colors[ctrl.board.state[i * size + j]]
-          m "td.#{color}", { onclick: ()-> ctrl.choose(color)}
+          colorId = ctrl.board.state[i * size + j]
+          colorName = colors[colorId]
+          m "td.#{colorName}", {
+            onclick: ()->
+              ctrl.choose(colorId)
+          }
         )
       )
     ]
