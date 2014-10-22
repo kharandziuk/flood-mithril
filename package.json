@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "mithril": "^0.1.22",
+    "coffeeify": "^0.7.0",
     "coffee-script": "*"
   },
   "scripts": {
