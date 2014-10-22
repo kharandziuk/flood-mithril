@@ -2,7 +2,7 @@ assert = require 'assert'
 
 Board = (state)->
   ###
-  # state describes initial board states 
+  # state describes initial board states
   # each number coresponds to some color
   ###
   size = Math.sqrt(state.length)
